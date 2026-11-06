@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: rgb(30, 30, 46);
+  --color-foreground: rgb(205, 214, 244);
+
+
+  --color-primary: rgb(180, 190, 254);
+  --color-primary-foreground: rgb(166, 173, 200);
+
+  --color-secondary: rgb(69, 71, 90);
+  --color-secondary-foreground: rgb(137, 180, 250);
+
+  --color-muted: #252e37;
+  --color-muted-foreground: #7a8491;
+
+  --radius: 0.75rem;
+
+  --color-border: rgb(17, 17, 27);
+  --color-surface: rgb(24, 24, 37);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  button {
+    cursor: pointer
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+@layer components {
+  .glass {
+    background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
+    backdrop-filter: blur(14px);
+    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  }
+
+  .glass-strong {
+    background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
+    backdrop-filter: blur(24px);
+    border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 30px color-mix(in srgb, var(--color-primary) 50%, transparent);
+  }
+
+  .glow-border {
+    box-shadow: 0 0 20px color-mix(in srgb, var(--color-primary) 20%, transparent),
+      inset 0 0 20px color-mix(in srgb, var(--color-primary) 5%, transparent);
+  }
+}
