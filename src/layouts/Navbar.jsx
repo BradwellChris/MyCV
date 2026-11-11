@@ -1,6 +1,5 @@
 import { Menu, X } from "lucide-react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const navLinks = [
@@ -22,56 +21,74 @@ function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
 
-  })
+  }, [])
 
   return (
-    <header className={`fixed top-0 left-0 right-0 transition-all duration-500 ${isScrolled ? "glass py-3" : "bg-transparent py-5"} z-50`}>
-      <nav className="container mx-auto px-6 flex items-center justify-between">
-        <a className="text-xl font-bold tracking-tight hover:text-primary" href="#">ChrisB<span className="text-primary">.</span></a>
+    <>
+      {/* Desktop Sidebar */}
+      <aside className="hidden md:sticky md:top-0 md:flex md:h-screen z-50 flex-col glass-strong px-4 py-6">
+        <a className="text-xl font-bold tracking-tight whitespace-nowrap hover:text-primary" href="#">ChrisB<span className="text-primary">.</span></a>
 
-        <div className="hidden md:flex items-center gap-1">
-          <div className="glass rounded-full px-2 py-1 flex items-center gap-1">
-            {navLinks.map((link, idx) => (
-              <a href={link.href} key={idx} className="px-4 py-2 text-sm text-muted-foreground hover:text-primary rounded-full hover:bg-surface">
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </div>
+        <nav className="mt-10 flex flex-col gap-1">
+          {navLinks.map((link, idx) => (
+            <a
+              href={link.href}
+              key={idx}
+              className="whitespace-nowrap px-3 py-2 text-sm leading-snug text-muted-foreground hover:text-primary rounded-lg hover:bg-surface transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
 
-        {/* CTA Button */}
-        <div className="hidden md:block"></div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2 text-foreground cursor-pointer"
-          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+        <a
+          href="#contact"
+          className="mt-auto block whitespace-nowrap rounded-lg bg-primary px-3 py-2 text-center text-sm font-medium text-background transition-opacity hover:opacity-90"
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </nav>
+          Contact Me
+        </a>
+      </aside>
 
-      {isMobileMenuOpen && (
-        <div className="md:hidden glass-strong animate-fade-in">
-          <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
-            {navLinks.map((link, idx) => (
+      {/* Mobile Header */}
+      <header className={`md:hidden fixed top-0 left-0 right-0 transition-all duration-500 ${isScrolled ? "glass py-3" : "bg-transparent py-5"} z-50`}>
+        <nav className="container mx-auto px-6 flex items-center justify-between">
+          <a className="text-xl font-bold tracking-tight hover:text-primary" href="#">ChrisB<span className="text-primary">.</span></a>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="p-2 text-foreground cursor-pointer"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </nav>
+
+        {isMobileMenuOpen && (
+          <div className="glass-strong animate-fade-in">
+            <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
+              {navLinks.map((link, idx) => (
+                <a
+                  href={link.href}
+                  key={idx}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-lg text-muted-foreground hover:text-foreground py-2"
+                >
+                  {link.label}
+                </a>
+              ))}
+
               <a
-                href={link.href}
-                key={idx}
+                href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-lg text-muted-foreground hover:text-foreground py-2"
+                className="block rounded-lg bg-primary px-4 py-2 text-center text-sm font-medium text-background"
               >
-                {link.label}
+                Contact Me
               </a>
-            ))}
-
-            <Button onClick={() => setIsMobileMenuOpen(false)}>
-              Contact Me
-            </Button>
+            </div>
           </div>
-        </div>
-      )}
-    </header>
+        )}
+      </header>
+    </>
   )
 }
 
