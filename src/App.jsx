@@ -1,5 +1,6 @@
 import Navbar from "./layouts/Navbar";
 import About from "./sections/About";
+import Experiences from "./sections/Experiences";
 import Hero from "./sections/Hero";
 import Projects from "./sections/Projects";
 
@@ -12,6 +13,7 @@ function App() {
         <Hero />
         <About />
         <Projects />
+        <Experiences />
       </main>
     </div>
   )
