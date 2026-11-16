@@ -1,26 +1,5 @@
 import { FaLinkedin } from "react-icons/fa6";
-import { SiFrontendmentor, SiGithub, SiX } from "react-icons/si";
-
-const skills = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Node.js",
-  "GraphQL",
-  "PostgreSQL",
-  "MongoDB",
-  "Redis",
-  "Docker",
-  "AWS",
-  "Vercel",
-  "Tailwind CSS",
-  "Prisma",
-  "Jest",
-  "Cypress",
-  "Figma",
-  "Git",
-  "GitHub Actions",
-];
+import { SiFrontendmentor, SiGithub } from "react-icons/si";
 
 function Hero() {
   return (
